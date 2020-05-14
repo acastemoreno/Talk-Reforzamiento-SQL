@@ -2,7 +2,7 @@
 <html>
 <head>
 <title></title>
-<!-- 2020-05-14 jue 14:09 -->
+<!-- 2020-05-14 jue 15:07 -->
 <meta  charset="utf-8" />
 <meta  htto-equiv="X-UA-Compatible" content="chrome=1" />
 <meta  name="generator" content="Org-mode with org-ioslide" />
@@ -37,8 +37,8 @@
     </slide>
   <slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
 <aside class="gdbar right bottom"><img src="images/ruby.png"></aside><hgroup class="">
-       <h2 class=" "><div id="outline-container-orgbaf4dc4" class="outline-2">
-<h2 id="orgbaf4dc4">Crear un usuario</h2>
+       <h2 class=" "><div id="outline-container-org012a46c" class="outline-2">
+<h2 id="org012a46c">Crear un usuario</h2>
 </div>
 </h2>
        <h3></h3>
@@ -54,8 +54,8 @@ Con el usuario crearemos una base de datos
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-org8c5b892" class="outline-3">
-<h3 id="org8c5b892">Crear usuario desde pgadmin</h3>
+       <h2 class=" "><div id="outline-container-orgf0da51d" class="outline-3">
+<h3 id="orgf0da51d">Crear usuario desde pgadmin</h3>
 </div>
 </h2>
        <h3></h3>
@@ -77,8 +77,8 @@ Con el usuario crearemos una base de datos
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-org9b2a1b1" class="outline-3">
-<h3 id="org9b2a1b1">Nombre de usuario, password y privilegios</h3>
+       <h2 class=" "><div id="outline-container-orgd634a00" class="outline-3">
+<h3 id="orgd634a00">Nombre de usuario, password y privilegios</h3>
 </div>
 </h2>
        <h3></h3>
@@ -100,8 +100,8 @@ Setear
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-orgac43328" class="outline-3">
-<h3 id="orgac43328">Privilegios de usuario</h3>
+       <h2 class=" "><div id="outline-container-org6952818" class="outline-3">
+<h3 id="org6952818">Privilegios de usuario</h3>
 </div>
 </h2>
        <h3></h3>
@@ -125,8 +125,8 @@ Setear
 </slide>
 <slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
 <aside class="gdbar right bottom"><img src="images/ruby.png"></aside><hgroup class="">
-       <h2 class=" "><div id="outline-container-orgdc5958e" class="outline-2">
-<h2 id="orgdc5958e">Crear base de datos</h2>
+       <h2 class=" "><div id="outline-container-orgd2285f2" class="outline-2">
+<h2 id="orgd2285f2">Crear base de datos</h2>
 </div>
 </h2>
        <h3></h3>
@@ -142,8 +142,8 @@ Usando al usuario anteriormente creado
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-org8916777" class="outline-3">
-<h3 id="org8916777">Crear base de datos con SQL sentence</h3>
+       <h2 class=" "><div id="outline-container-org2fb9533" class="outline-3">
+<h3 id="org2fb9533">Crear base de datos con SQL sentence</h3>
 </div>
 </h2>
        <h3></h3>
@@ -171,8 +171,8 @@ CREATE DATABASE</pre>
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-orgc938291" class="outline-3">
-<h3 id="orgc938291">Crear base de datos desde Ruby</h3>
+       <h2 class=" "><div id="outline-container-org58d6604" class="outline-3">
+<h3 id="org58d6604">Crear base de datos desde Ruby</h3>
 </div>
 </h2>
        <h3></h3>
@@ -199,8 +199,8 @@ conn.exec('<b>CREATE DATABASE "reforfamiento-sql"</b>')</pre>
 </slide>
 <slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
 <aside class="gdbar right bottom"><img src="images/ruby.png"></aside><hgroup class="">
-       <h2 class=" "><div id="outline-container-org81e3a67" class="outline-2">
-<h2 id="org81e3a67">Crear tablas</h2>
+       <h2 class=" "><div id="outline-container-org4789c7f" class="outline-2">
+<h2 id="org4789c7f">Crear tablas</h2>
 </div>
 </h2>
        <h3></h3>
@@ -213,22 +213,19 @@ conn.exec('<b>CREATE DATABASE "reforfamiento-sql"</b>')</pre>
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-orgea4e7e6" class="outline-3">
-<h3 id="orgea4e7e6">SQL syntaxis para crear tablas</h3>
+       <h2 class=" "><div id="outline-container-org1186b42" class="outline-3">
+<h3 id="org1186b42">SQL syntaxis para crear tablas</h3>
 </div>
 </h2>
        <h3></h3>
        </hgroup>
 <article class="" id="text-">
-<p>
-[] significa optional
-</p>
 <div class="org-src-container">
 
 <pre class="prettyprint" data-lang="SQL">
 CREATE TABLE [IF NOT EXISTS] mytable (
-    &lt;column_name&gt; &lt;DataType&gt; [Constraint] [DEFAULT default_value],
-    &lt;another_column&gt; &lt;DataType&gt; [AnotherConstraint] [DEFAULT default_value],
+    column_name1 DataType1 [Constraint] [DEFAULT default_value1],
+    column_name2 DataType2 [Constraint] [DEFAULT default_value2],
     …
 );</pre>
 
@@ -242,8 +239,8 @@ CREATE TABLE [IF NOT EXISTS] mytable (
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-orgec388a5" class="outline-3">
-<h3 id="orgec388a5">Aclaraciones</h3>
+       <h2 class=" "><div id="outline-container-org218a615" class="outline-3">
+<h3 id="org218a615">Aclaraciones</h3>
 </div>
 </h2>
        <h3></h3>
@@ -251,8 +248,8 @@ CREATE TABLE [IF NOT EXISTS] mytable (
 <article class="larger" id="text-">
 <ul>
 <li>[]: significa opcional</li>
-<li><b>&lt;column_name&gt;</b>: Nombre de columna.</li>
-<li><b>&lt;DataType&gt;</b>: Tipo de dato almacenado.</li>
+<li><b>column_name</b>: Nombre de columna.</li>
+<li><b>DataType</b>: Tipo de dato almacenado.</li>
 <li><b>[Constraint]</b>: 1 a más restricciones que debe cumplir la data almacenada. Puede existe mas de un constraint</li>
 <li><b>[DEFAULT default_value]</b>: Valor por defecto en caso no se especifique valor de column cuando se crea un registro(row)</li>
 </ul>
@@ -265,8 +262,8 @@ CREATE TABLE [IF NOT EXISTS] mytable (
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-org7667ea7" class="outline-3">
-<h3 id="org7667ea7">Datatypes</h3>
+       <h2 class=" "><div id="outline-container-org7606702" class="outline-3">
+<h3 id="org7606702">Datatypes</h3>
 </div>
 </h2>
        <h3></h3>
@@ -281,7 +278,6 @@ Los mas comunes
 <li><b>SERIAL</b>: Integer autoincrementado, generalmente usado para PK.</li>
 <li><b>VARCHAR(&lt;num_char&gt;)</b>: Strings,  <b>&lt;num_char&gt;</b> indica la cantidad de caracteres que se almacena. Estable tambien el maximo numero de caracteres almacenados.</li>
 </ul>
-
 
 <aside class="note">
   <section>
@@ -302,10 +298,332 @@ solo para nota<sup>1</sup>
 </slide>
 
 </slide>
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/ruby.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-org1111c1d" class="outline-2">
+<h2 id="org1111c1d">Constraints</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+<p>
+Restricciones que debe cumplir la data para ser agregada o modificada.
+</p>
+
+
+</article>
+
+</slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-orgb2180ed" class="outline-3">
-<h3 id="orgb2180ed">Crear tablas con SQL sentence</h3>
+       <h2 class=" "><div id="outline-container-orgc97baba" class="outline-3">
+<h3 id="orgc97baba">Constraints: CHECK</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Es el Constraint mas generico. Permite especificar un expresion que debe retornar <code>true</code> para todo registro valido.
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="SQL">
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(30),
+    price FLOAT,
+    <b>CHECK (price &gt; 0)</b>
+);</pre>
+
+</div>
+<aside class="note">
+  <section>
+<p>
+solo para nota<sup>1</sup>
+</p>
+
+  </section>
+</aside>
+
+<footer class="source">
+<p class="footpara">1. 
+<a href="https://www.postgresql.org/docs/12/ddl-constraints.html">Doc - PostgreSQL Constraints</a>
+</p>
+</footer>
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgc48b9ed" class="outline-3">
+<h3 id="orgc48b9ed">Constraints: CHECK permite crear un nombre para el constraint</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="SQL">
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(30),
+    price FLOAT,
+    <b>CONSTRAINT positive_price CHECK (price &gt; 0)</b>
+);</pre>
+
+</div>
+
+<aside class="note">
+  <section>
+<p>
+solo para nota
+</p>
+
+  </section>
+</aside>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org05a3c06" class="outline-3">
+<h3 id="org05a3c06">Constraints: <code>NOT NULL</code></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Indica que todos los registro deben contener informacion en determinada columna.
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="SQL">
+CREATE TABLE "products" (
+    "id" SERIAL,
+    "name" VARCHAR(30),
+    "price" FLOAT <b>NOT NULL</b>
+);</pre>
+
+</div>
+<aside class="note">
+  <section>
+<p>
+solo para nota
+</p>
+
+  </section>
+</aside>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgfdc8e99" class="outline-3">
+<h3 id="orgfdc8e99">Constraints: <code>PK</code></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Indica que una columna (o grupo de columnas) es usada como identificadores unico para cada registro en la tabla. La data almacenada en esta columna no pueden repetirse.
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="SQL">
+CREATE TABLE "products" (
+    "id" SERIAL <b>PRIMARY KEY</b>,
+    "name" VARCHAR(30),
+    "price" FLOAT
+);</pre>
+
+</div>
+<aside class="note">
+  <section>
+<p>
+solo para nota
+</p>
+
+  </section>
+</aside>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org5e9ed03" class="outline-3">
+<h3 id="org5e9ed03">Constraints: Composite <code>PK</code></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="SQL">
+CREATE TABLE "project" (
+    "user_id" INTEGER,
+    "project_id" INTEGER,
+    <b>PRIMARY KEY("user_id", "project_id")</b>
+);</pre>
+
+</div>
+<aside class="note">
+  <section>
+<p>
+solo para nota
+</p>
+
+  </section>
+</aside>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org61107e1" class="outline-3">
+<h3 id="org61107e1">Constraints: <code>UNIQUE</code></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Indica que la informacion almacenada en una columna (o grupo de columnas) no puede repetirse entre los registros de la tabla.
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="SQL">
+CREATE TABLE "products" (
+    "id" SERIAL PRIMARY KEY,
+    "name" VARCHAR(30) <b>UNIQUE</b>,
+    "price" FLOAT
+);</pre>
+
+</div>
+<aside class="note">
+  <section>
+<p>
+solo para nota
+</p>
+
+  </section>
+</aside>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org94eb1b9" class="outline-3">
+<h3 id="org94eb1b9">Constraints: Composite <code>UNIQUE</code></h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="SQL">
+CREATE TABLE "project" (
+    "id" SERIAL PRIMARY KEY,
+    "user_id" INTEGER,
+    "project_id" INTEGER,
+    <b>UNIQUE("user_id", "project_id")</b>
+);</pre>
+
+</div>
+<aside class="note">
+  <section>
+<p>
+solo para nota
+</p>
+
+  </section>
+</aside>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org0bb523a" class="outline-3">
+<h3 id="org0bb523a">Constraints: <code>FOREIGN KEY</code>:</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<p>
+Especifica que los valores contenido en una columna (o grupo de columnas) aparecen unaS columna de otra tabla.
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="SQL">
+CREATE TABLE "project" (
+    "id" SERIAL PRIMARY KEY,
+    "user_id" INTEGER <b>REFERENCES "User"(id)</b>,
+    "project_id" INTEGER <b>REFERENCES "Project"(id)</b>
+);
+
+CREATE TABLE "project" (
+    "id" SERIAL PRIMARY KEY,
+    "user_id" INTEGER,
+    "project_id" INTEGER,
+    <b>FOREIGN KEY ("user_id") REFERENCES "User"(id),
+    FOREIGN KEY ("project_id") REFERENCES "Project"(id)</b>,
+);</pre>
+
+</div>
+<aside class="note">
+  <section>
+<p>
+solo para nota
+</p>
+
+  </section>
+</aside>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org5b5c5f8" class="outline-3">
+<h3 id="org5b5c5f8">Crear tablas con SQL sentence</h3>
 </div>
 </h2>
        <h3></h3>
@@ -340,11 +658,46 @@ CREATE TABLE IF NOT EXISTS "Project"(
 
 </slide>
 
+
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-org54d84c8" class="outline-3">
-<h3 id="org54d84c8">Crear tablas desde Ruby</h3>
+       <h2 class=" "><div id="outline-container-orge5ca1da" class="outline-3">
+<h3 id="orge5ca1da">Crear tablas con SQL sentence</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="SQL">
+CREATE TABLE IF NOT EXISTS "User-Project"(
+   "id" SERIAL PRIMARY KEY,
+   "user_id" INTEGER REFERENCES "User"(id) NOT NULL,
+   "project_id" INTEGER REFERENCES "Project"(id) NOT NULL,
+   "total_budget" INTEGER CHECK (total_budget &gt;= 0) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "Daily-Log"(
+   "id" SERIAL PRIMARY KEY,
+   "project-member_id" INTEGER REFERENCES "User-Project"(id),
+   "date" DATE NOT NULL,
+   "hours" INTEGER CHECK (hours &gt;= 0) NOT NULL
+);</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgd7c31d1" class="outline-3">
+<h3 id="orgd7c31d1">Crear tablas desde Ruby</h3>
 </div>
 </h2>
        <h3></h3>
@@ -357,10 +710,6 @@ require 'pg'
 
 conn = PG.connect(dbname: 'reforfamiento-sql', host: "localhost",
   user: "amiguito", password: "123456789")
-
-conn.exec('
-  <b>CREATE TABLE <b>IF NOT EXISTS</b> timetracker();</b>
-')
 
 conn.exec('
   <b>CREATE TABLE <b>IF NOT EXISTS</b> "User"(
@@ -382,8 +731,8 @@ conn.exec('
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-org7f8c925" class="outline-3">
-<h3 id="org7f8c925">Crear tablas desde Ruby (continue code)</h3>
+       <h2 class=" "><div id="outline-container-orge5f3960" class="outline-3">
+<h3 id="orge5f3960">Crear tablas desde Ruby (continue code)</h3>
 </div>
 </h2>
        <h3></h3>
@@ -400,6 +749,44 @@ conn.exec('
     "start" DATE NOT NULL,
     "end" DATE NOT NULL,
     "closed" BOOLEAN NOT NULL DEFAULT false
+  );</b>
+')
+
+conn.exec('
+  <b>CREATE TABLE IF NOT EXISTS "User-Project"(
+    "id" SERIAL PRIMARY KEY,
+    "user_id" INTEGER REFERENCES "User"(id) NOT NULL,
+    "project_id" INTEGER REFERENCES "Project"(id) NOT NULL,
+    "total_budget" INTEGER CHECK (total_budget &gt;= 0) NOT NULL
+  );</b>
+')</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgfef4d18" class="outline-3">
+<h3 id="orgfef4d18">Crear tablas desde Ruby (continue code)</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="smaller" id="text-">
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="ruby">
+conn.exec('
+  <b>CREATE TABLE IF NOT EXISTS "Daily-Log"(
+    "id" SERIAL PRIMARY KEY,
+    "project-member_id" INTEGER REFERENCES "User-Project"(id),
+    "date" DATE NOT NULL,
+    "hours" INTEGER CHECK (hours &gt;= 0) NOT NULL
   );</b>
 ')</pre>
 

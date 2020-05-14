@@ -199,6 +199,7 @@ CREATE TABLE "products" (
     "name" VARCHAR(30) <b>UNIQUE</b>,
     "price" FLOAT
 );
+#+END_SRC
 #+ATTR_HTML: :class note
 #+BEGIN_QUOTE
 solo para nota[fn:2]
@@ -218,8 +219,12 @@ CREATE TABLE "project" (
 solo para nota[fn:2]
 #+END_QUOTE
 
-** Constraints: =FOREIGN KEY=
-Especifica que los valores contenido en una columna (o grupo de columnas) aparecen en la otra columna de otra tabla.
+** Constraints: =FOREIGN KEY=:
+  :PROPERTIES:
+  :ARTICLE:  smaller
+  :END:
+
+Especifica que los valores contenido en una columna (o grupo de columnas) aparecen unaS columna de otra tabla.
 #+BEGIN_SRC SQL
 CREATE TABLE "project" (
     "id" SERIAL PRIMARY KEY,
@@ -239,7 +244,6 @@ CREATE TABLE "project" (
 #+BEGIN_QUOTE
 solo para nota[fn:2]
 #+END_QUOTE
-
 
 ** Crear tablas con SQL sentence
   :PROPERTIES:
@@ -266,6 +270,27 @@ CREATE TABLE IF NOT EXISTS "Project"(
 );
 #+END_SRC
 
+
+** Crear tablas con SQL sentence
+  :PROPERTIES:
+  :ARTICLE:  smaller
+  :END:
+#+BEGIN_SRC SQL
+CREATE TABLE IF NOT EXISTS "User-Project"(
+   "id" SERIAL PRIMARY KEY,
+   "user_id" INTEGER REFERENCES "User"(id) NOT NULL,
+   "project_id" INTEGER REFERENCES "Project"(id) NOT NULL,
+   "total_budget" INTEGER CHECK (total_budget >= 0) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "Daily-Log"(
+   "id" SERIAL PRIMARY KEY,
+   "project-member_id" INTEGER REFERENCES "User-Project"(id),
+   "date" DATE NOT NULL,
+   "hours" INTEGER CHECK (hours >= 0) NOT NULL
+);
+#+END_SRC
+
 ** Crear tablas desde Ruby
   :PROPERTIES:
   :ARTICLE:  smaller
@@ -275,10 +300,6 @@ require 'pg'
 
 conn = PG.connect(dbname: 'reforfamiento-sql', host: "localhost",
   user: "amiguito", password: "123456789")
-
-conn.exec('
-  <b>CREATE TABLE <b>IF NOT EXISTS</b> timetracker();</b>
-')
 
 conn.exec('
   <b>CREATE TABLE <b>IF NOT EXISTS</b> "User"(
@@ -295,6 +316,7 @@ conn.exec('
   :PROPERTIES:
   :ARTICLE:  smaller
   :END:
+
 #+BEGIN_SRC ruby
 conn.exec('
   <b>CREATE TABLE IF NOT EXISTS "Project"(
@@ -304,6 +326,31 @@ conn.exec('
     "start" DATE NOT NULL,
     "end" DATE NOT NULL,
     "closed" BOOLEAN NOT NULL DEFAULT false
+  );</b>
+')
+
+conn.exec('
+  <b>CREATE TABLE IF NOT EXISTS "User-Project"(
+    "id" SERIAL PRIMARY KEY,
+    "user_id" INTEGER REFERENCES "User"(id) NOT NULL,
+    "project_id" INTEGER REFERENCES "Project"(id) NOT NULL,
+    "total_budget" INTEGER CHECK (total_budget >= 0) NOT NULL
+  );</b>
+')
+#+END_SRC
+
+** Crear tablas desde Ruby (continue code)
+  :PROPERTIES:
+  :ARTICLE:  smaller
+  :END:
+
+#+BEGIN_SRC ruby
+conn.exec('
+  <b>CREATE TABLE IF NOT EXISTS "Daily-Log"(
+    "id" SERIAL PRIMARY KEY,
+    "project-member_id" INTEGER REFERENCES "User-Project"(id),
+    "date" DATE NOT NULL,
+    "hours" INTEGER CHECK (hours >= 0) NOT NULL
   );</b>
 ')
 #+END_SRC
