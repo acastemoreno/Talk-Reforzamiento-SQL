@@ -380,6 +380,11 @@ ALTER TABLE [IF EXISTS] "User"
 ;
 #+END_SRC
 
+#+ATTR_HTML: :class note
+#+BEGIN_QUOTE
+solo para nota[fn:3]
+#+END_QUOTE
+
 ** Modificar tablas con SQL sentence
   :PROPERTIES:
   :ARTICLE:  smaller
@@ -576,6 +581,96 @@ solo para nota[fn:4]
 solo para nota[fn:5]
 #+END_QUOTE
 
+* Consultar Datos
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** Syntaxis SQL para consultar datos
+#+BEGIN_SRC SQL
+<b>SELECT [DISTINCT] column, AGG_FUNC(column_or_expression), …
+FROM mytable</b>
+    JOIN another_table
+      ON mytable.column = another_table.column
+    WHERE expression
+    GROUP BY column
+    HAVING constraint_expression
+    ORDER BY column ASC/DESC
+    LIMIT count OFFSET COUNT;
+#+END_SRC
+
+** Proposito y secuencia de ejecución
+  :PROPERTIES:
+  :ARTICLE:  smaller
+  :END:
+
+1. *FROM mytable*: 
+
+  Establece la tabla desde donde partiremos una busqueda.
+
+2. *JOIN another_table*: 
+
+  Establece el uso de la informacion de otra tabla.
+
+3. *ON …*: 
+
+  Establece relacion entre los row de las distintas tablas. Merge de datos entre tablas.
+
+4. *WHERE expression*: 
+
+  Sirven para seleccionar rows que cumplen determinada =expression=.
+
+5. *GROUP BY column*: 
+
+  Agrupa los resultados hasta el momento segun el valor de la columna especificada.
+
+** Proposito y secuencia de ejecución (continue)
+  :PROPERTIES:
+  :ARTICLE:  smaller
+  :END:
+
+6. *HAVING having_expression*: 
+
+  Si el query tiene la clausula *GROUP BY*, los resultados agrupados seran filtrados segun el cumplimiento del *having_expression*
+
+7. *SELECT*
+
+  Selecciona columnas o expresiones que quieres como resultado de la informacion recopilada hasta el momento.
+
+8. *[DISTINT]*
+
+  Elimina los valores duplicados.
+
+9. *ORDER BY column ASC/DESC*
+
+  Ordena los datos segun la informacion de determinadas columnas
+
+10. *LIMIT count OFFSET COUNT*
+
+  Limita la cantidad o offset de los rows devueltos.
+
+
+* DEMO TIME
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** 2. ON mytable.column = another_table.column
+#+BEGIN_CENTER
+#+ATTR_HTML: :height 400px
+[[file:images/ON SQL.jpg]]
+#+END_CENTER
+
+#+ATTR_HTML: :class note
+#+BEGIN_QUOTE
+solo para nota[fn:6]
+#+END_QUOTE
+
+
 * Gracias ˊ・ω・ˋ
 :PROPERTIES:
 :SLIDE: thank-you-slide segue
@@ -589,3 +684,4 @@ solo para nota[fn:5]
 [fn:3] [[https://www.postgresql.org/docs/12/sql-altertable.html][Doc - PostgreSQL Alter Table]]
 [fn:4] [[https://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Literals#The_.25_Notation][The % Notation]]
 [fn:5] [[https://simpleror.wordpress.com/2009/03/15/q-q-w-w-x-r-s/#q][More of % Notation]]
+[fn:6] [[https://sqlbolt.com/lesson/select_queries_order_of_execution][Order of execution]]
