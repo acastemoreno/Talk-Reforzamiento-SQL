@@ -2,7 +2,7 @@
 <html>
 <head>
 <title></title>
-<!-- 2020-05-14 jue 13:04 -->
+<!-- 2020-05-14 jue 13:29 -->
 <meta  charset="utf-8" />
 <meta  htto-equiv="X-UA-Compatible" content="chrome=1" />
 <meta  name="generator" content="Org-mode with org-ioslide" />
@@ -37,8 +37,8 @@
     </slide>
   <slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
 <aside class="gdbar right bottom"><img src="images/ruby.png"></aside><hgroup class="">
-       <h2 class=" "><div id="outline-container-orgc0c2870" class="outline-2">
-<h2 id="orgc0c2870">Crear un usuario</h2>
+       <h2 class=" "><div id="outline-container-orgf608521" class="outline-2">
+<h2 id="orgf608521">Crear un usuario</h2>
 </div>
 </h2>
        <h3></h3>
@@ -54,8 +54,8 @@ Con el usuario crearemos una base de datos
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-org7632307" class="outline-3">
-<h3 id="org7632307">Crear usuario desde pgadmin</h3>
+       <h2 class=" "><div id="outline-container-org83e33b4" class="outline-3">
+<h3 id="org83e33b4">Crear usuario desde pgadmin</h3>
 </div>
 </h2>
        <h3></h3>
@@ -77,8 +77,8 @@ Con el usuario crearemos una base de datos
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-org008bbd1" class="outline-3">
-<h3 id="org008bbd1">Nombre de usuario, password y privilegios</h3>
+       <h2 class=" "><div id="outline-container-orgb08f09e" class="outline-3">
+<h3 id="orgb08f09e">Nombre de usuario, password y privilegios</h3>
 </div>
 </h2>
        <h3></h3>
@@ -100,8 +100,8 @@ Setear
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-org01dc321" class="outline-3">
-<h3 id="org01dc321">Privilegios de usuario</h3>
+       <h2 class=" "><div id="outline-container-org46df8e3" class="outline-3">
+<h3 id="org46df8e3">Privilegios de usuario</h3>
 </div>
 </h2>
        <h3></h3>
@@ -125,8 +125,8 @@ Setear
 </slide>
 <slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
 <aside class="gdbar right bottom"><img src="images/ruby.png"></aside><hgroup class="">
-       <h2 class=" "><div id="outline-container-org237cf19" class="outline-2">
-<h2 id="org237cf19">Crear base de datos</h2>
+       <h2 class=" "><div id="outline-container-orgd802ce3" class="outline-2">
+<h2 id="orgd802ce3">Crear base de datos</h2>
 </div>
 </h2>
        <h3></h3>
@@ -142,8 +142,8 @@ Usando al usuario anteriormente creado
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-org7ca1562" class="outline-3">
-<h3 id="org7ca1562">Crear base de datos con SQL sentence</h3>
+       <h2 class=" "><div id="outline-container-orgc4bc20a" class="outline-3">
+<h3 id="orgc4bc20a">Crear base de datos con SQL sentence</h3>
 </div>
 </h2>
        <h3></h3>
@@ -171,8 +171,8 @@ CREATE DATABASE</pre>
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-org3565263" class="outline-3">
-<h3 id="org3565263">Crear base de datos desde Ruby</h3>
+       <h2 class=" "><div id="outline-container-org527ad9c" class="outline-3">
+<h3 id="org527ad9c">Crear base de datos desde Ruby</h3>
 </div>
 </h2>
        <h3></h3>
@@ -199,8 +199,8 @@ conn.exec('<b>CREATE DATABASE "reforfamiento-sql"</b>')</pre>
 </slide>
 <slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
 <aside class="gdbar right bottom"><img src="images/ruby.png"></aside><hgroup class="">
-       <h2 class=" "><div id="outline-container-orgcc2e946" class="outline-2">
-<h2 id="orgcc2e946">Crear tabla</h2>
+       <h2 class=" "><div id="outline-container-orgf2f6e0a" class="outline-2">
+<h2 id="orgf2f6e0a">Crear tablas</h2>
 </div>
 </h2>
        <h3></h3>
@@ -213,8 +213,98 @@ conn.exec('<b>CREATE DATABASE "reforfamiento-sql"</b>')</pre>
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-org0203a4b" class="outline-3">
-<h3 id="org0203a4b">Crear tabla con SQL sentence</h3>
+       <h2 class=" "><div id="outline-container-org11bbc89" class="outline-3">
+<h3 id="org11bbc89">SQL syntaxis para crear tablas</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+[] significa optional
+</p>
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="SQL">
+CREATE TABLE [IF NOT EXISTS] mytable (
+    &lt;column_name&gt; &lt;DataType&gt; [Constraint] [DEFAULT default_value],
+    &lt;another_column&gt; &lt;DataType&gt; [AnotherConstraint] [DEFAULT default_value],
+    …
+);</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org07ddcf1" class="outline-3">
+<h3 id="org07ddcf1">Aclaraciones</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li><b>&lt;column_name&gt;</b>: Nombre de columna.</li>
+<li><b>&lt;DataType&gt;</b>: Tipo de dato almacenado.</li>
+<li><b>[Constraint]</b>: 1 a más restricciones que debe cumplir la data almacenada. Puede existe mas de un constraint</li>
+<li><b>[DEFAULT default_value]</b>: Valor por defecto en caso no se especifique valor de column cuando se crea un registro(row)</li>
+</ul>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org194727b" class="outline-3">
+<h3 id="org194727b">Datatypes</h3>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<p>
+Los mas comunes
+</p>
+<ul>
+<li><b>INTEGER</b>: Numeros enteros.</li>
+<li><b>FLOAT</b>: Numeros con punto flotante.</li>
+<li><b>SERIAL</b>: Integer autoincrementado, generalmente usado para PK.</li>
+<li><b>VARCHAR(&lt;num_char&gt;)</b>: Strings,  <b>&lt;num_char&gt;</b> indica la cantidad de caracteres que se almacena. Estable tambien el maximo numero de caracteres almacenados.</li>
+</ul>
+
+
+<aside class="note">
+  <section>
+<p>
+solo para nota<sup>1</sup>
+</p>
+
+  </section>
+</aside>
+
+<footer class="source">
+<p class="footpara">1. 
+<a href="https://www.postgresql.org/docs/12/datatype.html">Doc - PostgreSQL Datatypes</a>
+</p>
+</footer>
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org39f1c50" class="outline-3">
+<h3 id="org39f1c50">Crear tablas con SQL sentence</h3>
 </div>
 </h2>
        <h3></h3>
@@ -240,8 +330,7 @@ CREATE TABLE IF NOT EXISTS "Project"(
    "start" DATE NOT NULL,
    "end" DATE NOT NULL,
    "closed" BOOLEAN NOT NULL DEFAULT false
-);
-</pre>
+);</pre>
 
 </div>
 
@@ -253,8 +342,8 @@ CREATE TABLE IF NOT EXISTS "Project"(
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-org8435614" class="outline-3">
-<h3 id="org8435614">Crear tabla desde Ruby</h3>
+       <h2 class=" "><div id="outline-container-org3585dd4" class="outline-3">
+<h3 id="org3585dd4">Crear tablas desde Ruby</h3>
 </div>
 </h2>
        <h3></h3>
@@ -292,8 +381,8 @@ conn.exec('
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-org61d5da4" class="outline-3">
-<h3 id="org61d5da4">Crear tabla desde Ruby (continue code)</h3>
+       <h2 class=" "><div id="outline-container-org6f7d51e" class="outline-3">
+<h3 id="org6f7d51e">Crear tablas desde Ruby (continue code)</h3>
 </div>
 </h2>
        <h3></h3>

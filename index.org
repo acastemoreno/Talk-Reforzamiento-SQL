@@ -74,14 +74,43 @@ conn = PG.connect(dbname: <b>'postgres'</b>, host: <b>"localhost"</b>,
 conn.exec('<b>CREATE DATABASE "reforfamiento-sql"</b>')
 #+END_SRC
 
-* Crear tabla
+* Crear tablas
   :PROPERTIES:
   :SLIDE:    segue dark quote
   :ASIDE:    right bottom
   :ARTICLE:  flexbox vleft auto-fadein
   :END:
 
-** Crear tabla con SQL sentence
+** SQL syntaxis para crear tablas
+[] significa optional
+#+BEGIN_SRC SQL
+CREATE TABLE [IF NOT EXISTS] mytable (
+    <column_name> <DataType> [Constraint] [DEFAULT default_value],
+    <another_column> <DataType> [AnotherConstraint] [DEFAULT default_value],
+    …
+);
+#+END_SRC
+
+** Aclaraciones
+- *<column_name>*: Nombre de columna.
+- *<DataType>*: Tipo de dato almacenado.
+- *[Constraint]*: 1 a más restricciones que debe cumplir la data almacenada. Puede existe mas de un constraint
+- *[DEFAULT default_value]*: Valor por defecto en caso no se especifique valor de column cuando se crea un registro(row)
+
+** Datatypes
+Los mas comunes
+- *INTEGER*: Numeros enteros.
+- *FLOAT*: Numeros con punto flotante.
+- *SERIAL*: Integer autoincrementado, generalmente usado para PK.
+- *VARCHAR(<num_char>)*: Strings,  *<num_char>* indica la cantidad de caracteres que se almacena. Estable tambien el maximo numero de caracteres almacenados.
+
+
+#+ATTR_HTML: :class note
+#+BEGIN_QUOTE
+solo para nota[fn:1]
+#+END_QUOTE
+
+** Crear tablas con SQL sentence
   :PROPERTIES:
   :ARTICLE:  smaller
   :END:
@@ -104,10 +133,9 @@ CREATE TABLE IF NOT EXISTS "Project"(
    "end" DATE NOT NULL,
    "closed" BOOLEAN NOT NULL DEFAULT false
 );
-
 #+END_SRC
 
-** Crear tabla desde Ruby
+** Crear tablas desde Ruby
   :PROPERTIES:
   :ARTICLE:  smaller
   :END:
@@ -132,7 +160,7 @@ conn.exec('
 ')
 #+END_SRC
 
-** Crear tabla desde Ruby (continue code)
+** Crear tablas desde Ruby (continue code)
   :PROPERTIES:
   :ARTICLE:  smaller
   :END:
@@ -155,3 +183,6 @@ conn.exec('
 :ASIDE: right
 :ARTICLE: flexbox vleft auto-fadein
 :END:
+
+* Footnotes
+[fn:1] [[https://www.postgresql.org/docs/12/datatype.html][Doc - PostgreSQL Datatypes]]
