@@ -86,7 +86,7 @@ end
   :ARTICLE:  flexbox vleft auto-fadein
   :END:
 
-** SQL syntaxis para crear tablas
+** Syntaxis SQL  para crear tablas
 #+BEGIN_SRC SQL
 CREATE TABLE [IF NOT EXISTS] mytable (
     column_name1 DataType1 [Constraint] [DEFAULT default_value1],
@@ -267,7 +267,7 @@ CREATE TABLE IF NOT EXISTS "User"(
 
 CREATE TABLE IF NOT EXISTS "Project"(
    "id" SERIAL PRIMARY KEY ,
-   "name" VARCHAR(25) NOT NULL,
+   "name" VARCHAR(25) NOT NULL UNIQUE,
    "category" VARCHAR(25) NOT NULL,
    "start" DATE NOT NULL,
    "end" DATE NOT NULL,
@@ -326,7 +326,7 @@ conn.exec('
 conn.exec('
   <b>CREATE TABLE IF NOT EXISTS "Project"(
     "id" SERIAL PRIMARY KEY ,
-    "name" VARCHAR(25) NOT NULL,
+    "name" VARCHAR(25) NOT NULL UNIQUE,
     "category" VARCHAR(25) NOT NULL,
     "start" DATE NOT NULL,
     "end" DATE NOT NULL,
@@ -367,7 +367,7 @@ conn.exec('
   :ARTICLE:  flexbox vleft auto-fadein
   :END:
 
-** SQL syntaxis para modificar estructura de tablas
+** Syntaxis SQL para modificar estructura de tablas
 #+BEGIN_SRC SQL
 ALTER TABLE [IF EXISTS] "User"
   RENAME TO new_table_name, 
@@ -419,7 +419,6 @@ require 'pg'
 conn = PG.connect(dbname: 'reforzamiento-sql', host: "localhost",
   user: "amiguito", password: "123456789")
 
-
 begin
   conn.exec('
     <b>ALTER TABLE IF EXISTS "User"
@@ -463,7 +462,6 @@ end
 #+END_SRC
 
 ** Modificar tablas desde Ruby (continue code)
-
 #+BEGIN_SRC Ruby
 begin
   conn.exec('
@@ -474,7 +472,96 @@ begin
 rescue StandardError => e
   puts e.message
 end
+#+END_SRC
 
+* Insertar Datos a tabla
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** Syntaxis SQL para ingresar datos a una tabla
+#+BEGIN_SRC SQL
+INSERT INTO mytable
+(column1, column2, column3, column4, …)
+VALUES (value_or_expr, another_value_or_expr, …),
+       (value_or_expr_2, another_value_or_expr_2, …),
+       …;
+#+END_SRC
+
+** Modificar tablas con SQL sentence
+  :PROPERTIES:
+  :ARTICLE:  smaller
+  :END:
+#+BEGIN_SRC SQL
+INSERT INTO "User"
+("name", "email", "role", "rate")
+VALUES ('Renato', 'renato@codeable.pe', 'front-end developer senior', 30),
+       ('Paty', 'paty@codeable.pe', 'back-end developer senior', 32),
+       ('Franco', 'franco@codeable.pe', 'front-end developer junior', 15),
+       ('Luis', 'luis@codeable.pe', 'back-end developer junior', 16)
+;
+
+INSERT INTO "Project"
+("name", "category", "start", "end", "closed")
+VALUES 
+  ('Shiftme', 'Bussiness', '2020/05/13', '2020/08/11', false),
+  ('Line Balancing', 'Bussiness', '2020/05/13', '2020/09/10', false),
+  ('Overbooking', 'Bussiness', '2020/05/13', '2020/10/10', false),
+  ('Kampu', 'Sport', '2020/05/13', '2020/06/27', false),
+  ('Codeable App', 'Education', '2020/05/13', '2020/11/09', false)
+;
+#+END_SRC
+
+
+** Insertar datos a tablas desde Ruby
+  :PROPERTIES:
+  :ARTICLE:  smaller
+  :END:
+
+#+BEGIN_SRC SQL
+require 'pg'
+
+conn = PG.connect(dbname: 'reforzamiento-sql', host: "localhost",
+  user: "amiguito", password: "123456789")
+
+begin
+  conn.exec(<b>%Q(
+    INSERT INTO "User"
+    ("name", "email", "role", "rate")
+    VALUES ('Renato', 'renato@codeable.pe', 'front-end developer senior', 30),
+          ('Paty', 'paty@codeable.pe', 'back-end developer senior', 32),
+          ('Franco', 'franco@codeable.pe', 'front-end developer junior', 15),
+          ('Luis', 'luis@codeable.pe', 'back-end developer junior', 16)
+    ;
+  )</b>)
+rescue StandardError => e
+  puts e.message
+end
+#+END_SRC
+
+** Insertar datos a tablas desde Ruby (Continue code)
+  :PROPERTIES:
+  :ARTICLE:  smaller
+  :END:
+
+#+BEGIN_SRC SQL
+begin
+  conn.exec(<b>%Q(
+    INSERT INTO "Project"
+    ("name", "category", "start", "end", "closed")
+    VALUES 
+      ('Shiftme', 'Bussiness', '2020/05/13', '2020/08/11', false),
+      ('Line Balancing', 'Bussiness', '2020/05/13', '2020/09/10', false),
+      ('Overbooking', 'Bussiness', '2020/05/13', '2020/10/10', false),
+      ('Kampu', 'Sport', '2020/05/13', '2020/06/27', false),
+      ('Codeable App', 'Education', '2020/05/13', '2020/11/09', false)
+    ;
+  )</b>)
+rescue StandardError => e
+  puts e.message
+end
 #+END_SRC
 
 * Gracias ˊ・ω・ˋ
@@ -488,3 +575,5 @@ end
 [fn:1] [[https://www.postgresql.org/docs/12/datatype.html][Doc - PostgreSQL Datatypes]]
 [fn:2] [[https://www.postgresql.org/docs/12/ddl-constraints.html][Doc - PostgreSQL Constraints]]
 [fn:3] [[https://www.postgresql.org/docs/12/sql-altertable.html][Doc - PostgreSQL Alter Table]]
+[fn:4] [[https://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Literals#The_.25_Notation][The % Notation]]
+[fn:5] [[https://simpleror.wordpress.com/2009/03/15/q-q-w-w-x-r-s/#q][More of % Notation]]
