@@ -541,6 +541,12 @@ rescue StandardError => e
 end
 #+END_SRC
 
+#+ATTR_HTML: :class note
+#+BEGIN_QUOTE
+solo para nota[fn:4]
+solo para nota[fn:5]
+#+END_QUOTE
+
 ** Insertar datos a tablas desde Ruby (Continue code)
   :PROPERTIES:
   :ARTICLE:  smaller
@@ -563,6 +569,12 @@ rescue StandardError => e
   puts e.message
 end
 #+END_SRC
+
+#+ATTR_HTML: :class note
+#+BEGIN_QUOTE
+solo para nota[fn:4]
+solo para nota[fn:5]
+#+END_QUOTE
 
 * Gracias ˊ・ω・ˋ
 :PROPERTIES:
