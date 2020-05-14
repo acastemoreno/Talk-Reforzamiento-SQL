@@ -82,18 +82,21 @@ conn.exec('<b>CREATE DATABASE "reforfamiento-sql"</b>')
   :END:
 
 ** SQL syntaxis para crear tablas
-[] significa optional
 #+BEGIN_SRC SQL
 CREATE TABLE [IF NOT EXISTS] mytable (
-    <column_name> <DataType> [Constraint] [DEFAULT default_value],
-    <another_column> <DataType> [AnotherConstraint] [DEFAULT default_value],
+    column_name1 DataType1 [Constraint] [DEFAULT default_value1],
+    column_name2 DataType2 [Constraint] [DEFAULT default_value2],
     …
 );
 #+END_SRC
 
 ** Aclaraciones
-- *<column_name>*: Nombre de columna.
-- *<DataType>*: Tipo de dato almacenado.
+  :PROPERTIES:
+  :ARTICLE:  larger
+  :END:
+- []: significa opcional
+- *column_name*: Nombre de columna.
+- *DataType*: Tipo de dato almacenado.
 - *[Constraint]*: 1 a más restricciones que debe cumplir la data almacenada. Puede existe mas de un constraint
 - *[DEFAULT default_value]*: Valor por defecto en caso no se especifique valor de column cuando se crea un registro(row)
 
@@ -104,11 +107,139 @@ Los mas comunes
 - *SERIAL*: Integer autoincrementado, generalmente usado para PK.
 - *VARCHAR(<num_char>)*: Strings,  *<num_char>* indica la cantidad de caracteres que se almacena. Estable tambien el maximo numero de caracteres almacenados.
 
-
 #+ATTR_HTML: :class note
 #+BEGIN_QUOTE
 solo para nota[fn:1]
 #+END_QUOTE
+
+* Constraints
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+Restricciones que debe cumplir la data para ser agregada o modificada.
+
+** Constraints: CHECK
+Es el Constraint mas generico. Permite especificar un expresion que debe retornar =true= para todo registro valido.
+#+BEGIN_SRC SQL
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(30),
+    price FLOAT,
+    <b>CHECK (price > 0)</b>
+);
+#+END_SRC
+#+ATTR_HTML: :class note
+#+BEGIN_QUOTE
+solo para nota[fn:2]
+#+END_QUOTE
+
+** Constraints: CHECK permite crear un nombre para el constraint
+#+BEGIN_SRC SQL
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(30),
+    price FLOAT,
+    <b>CONSTRAINT positive_price CHECK (price > 0)</b>
+);
+#+END_SRC
+
+#+ATTR_HTML: :class note
+#+BEGIN_QUOTE
+solo para nota[fn:2]
+#+END_QUOTE
+
+** Constraints: =NOT NULL=
+Indica que todos los registro deben contener informacion en determinada columna.
+#+BEGIN_SRC SQL
+CREATE TABLE "products" (
+    "id" SERIAL,
+    "name" VARCHAR(30),
+    "price" FLOAT <b>NOT NULL</b>
+);
+#+END_SRC
+#+ATTR_HTML: :class note
+#+BEGIN_QUOTE
+solo para nota[fn:2]
+#+END_QUOTE
+
+** Constraints: =PK=
+Indica que una columna (o grupo de columnas) es usada como identificadores unico para cada registro en la tabla. La data almacenada en esta columna no pueden repetirse.
+#+BEGIN_SRC SQL
+CREATE TABLE "products" (
+    "id" SERIAL <b>PRIMARY KEY</b>,
+    "name" VARCHAR(30),
+    "price" FLOAT
+);
+#+END_SRC
+#+ATTR_HTML: :class note
+#+BEGIN_QUOTE
+solo para nota[fn:2]
+#+END_QUOTE
+
+** Constraints: Composite =PK=
+#+BEGIN_SRC SQL
+CREATE TABLE "project" (
+    "user_id" INTEGER,
+    "project_id" INTEGER,
+    <b>PRIMARY KEY("user_id", "project_id")</b>
+);
+#+END_SRC
+#+ATTR_HTML: :class note
+#+BEGIN_QUOTE
+solo para nota[fn:2]
+#+END_QUOTE
+
+** Constraints: =UNIQUE=
+Indica que la informacion almacenada en una columna (o grupo de columnas) no puede repetirse entre los registros de la tabla.
+#+BEGIN_SRC SQL
+CREATE TABLE "products" (
+    "id" SERIAL PRIMARY KEY,
+    "name" VARCHAR(30) <b>UNIQUE</b>,
+    "price" FLOAT
+);
+#+ATTR_HTML: :class note
+#+BEGIN_QUOTE
+solo para nota[fn:2]
+#+END_QUOTE
+
+** Constraints: Composite =UNIQUE=
+#+BEGIN_SRC SQL
+CREATE TABLE "project" (
+    "id" SERIAL PRIMARY KEY,
+    "user_id" INTEGER,
+    "project_id" INTEGER,
+    <b>UNIQUE("user_id", "project_id")</b>
+);
+#+END_SRC
+#+ATTR_HTML: :class note
+#+BEGIN_QUOTE
+solo para nota[fn:2]
+#+END_QUOTE
+
+** Constraints: =FOREIGN KEY=
+Especifica que los valores contenido en una columna (o grupo de columnas) aparecen en la otra columna de otra tabla.
+#+BEGIN_SRC SQL
+CREATE TABLE "project" (
+    "id" SERIAL PRIMARY KEY,
+    "user_id" INTEGER <b>REFERENCES "User"(id)</b>,
+    "project_id" INTEGER <b>REFERENCES "Project"(id)</b>
+);
+
+CREATE TABLE "project" (
+    "id" SERIAL PRIMARY KEY,
+    "user_id" INTEGER,
+    "project_id" INTEGER,
+    <b>FOREIGN KEY ("user_id") REFERENCES "User"(id),
+    FOREIGN KEY ("project_id") REFERENCES "Project"(id)</b>,
+);
+#+END_SRC
+#+ATTR_HTML: :class note
+#+BEGIN_QUOTE
+solo para nota[fn:2]
+#+END_QUOTE
+
 
 ** Crear tablas con SQL sentence
   :PROPERTIES:
@@ -186,3 +317,4 @@ conn.exec('
 
 * Footnotes
 [fn:1] [[https://www.postgresql.org/docs/12/datatype.html][Doc - PostgreSQL Datatypes]]
+[fn:2] [[https://www.postgresql.org/docs/12/ddl-constraints.html][Doc - PostgreSQL Constraints]]
