@@ -19,3 +19,55 @@
 # ======= Org settings =========================
 #+EXCLUDE_TAGS: noexport
 #+OPTIONS: toc:nil num:nil ^:nil
+
+* Crear un usuario
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+Con el usuario crearemos una base de datos
+
+** Crear usuario desde pgadmin
+#+BEGIN_CENTER
+#+ATTR_HTML: :height 400px
+[[file:images/crear-login-role.png]]
+#+END_CENTER
+
+** Nombre de usuario, password y privilegios
+Setear
+- username: Pestaña General -> Name
+- password: Pestaña Definition -> Password
+
+** Privilegios de usuario
+#+BEGIN_CENTER
+#+ATTR_HTML: :height 400px
+[[file:images/privilegio-role.png]]
+#+END_CENTER
+
+* Crear base de datos
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+Usando al usuario anteriormente creado
+
+** Login con el usuario y crear base de datos
+#+BEGIN_SRC shell
+$ psql -h localhost -d postgres -U amiguito -W 
+# Se creara un prompt para escribir la contraseña del usuario
+Password: 
+.
+.
+.
+postgres=> CREATE DATABASE "reforfamiento-sql";
+CREATE DATABASE
+#+END_SRC
+
+* Gracias ˊ・ω・ˋ
+:PROPERTIES:
+:SLIDE: thank-you-slide segue
+:ASIDE: right
+:ARTICLE: flexbox vleft auto-fadein
+:END:
