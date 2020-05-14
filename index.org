@@ -61,7 +61,7 @@ Password:
 .
 .
 .
-postgres=> CREATE DATABASE "reforfamiento-sql";
+postgres=> CREATE DATABASE "reforzamiento-sql";
 CREATE DATABASE
 #+END_SRC
 
@@ -69,9 +69,14 @@ CREATE DATABASE
 #+BEGIN_SRC ruby
 require 'pg'
 
-conn = PG.connect(dbname: <b>'postgres'</b>, host: <b>"localhost"</b>, 
-  user: <b>"amiguito"</b>, password: <b>"123456789"</b>)
-conn.exec('<b>CREATE DATABASE "reforfamiento-sql"</b>')
+conn = PG.connect(dbname: 'postgres', host: "localhost", 
+  user: "amiguito", password: "123456789")
+
+begin
+  conn.exec('CREATE DATABASE "reforzamiento-sql"')
+rescue StandardError => e
+  puts e.message
+end
 #+END_SRC
 
 * Crear tablas
@@ -355,6 +360,123 @@ conn.exec('
 ')
 #+END_SRC
 
+* Modificar tablas
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** SQL syntaxis para modificar estructura de tablas
+#+BEGIN_SRC SQL
+ALTER TABLE [IF EXISTS] "User"
+  RENAME TO new_table_name, 
+  RENAME COLUMN old_column_name TO now_column_name,
+  DROP column_to_deleted,
+  ADD new_column DataType [Constraint] [DEFAULT default_value],
+  ALTER COLUMN column_to_be_update TYPE DataType [Constraint] [DEFAULT default_value], 
+  ADD CONSTRAINT new_contraint_name CONTRAINT_SENTENCE,
+  ALTER CONSTRAINT contraint_name NEW_CONTRAINT_SENTENCE
+;
+#+END_SRC
+
+** Modificar tablas con SQL sentence
+  :PROPERTIES:
+  :ARTICLE:  smaller
+  :END:
+
+#+BEGIN_SRC SQL
+ALTER TABLE IF EXISTS "User"
+   ALTER COLUMN "name" TYPE VARCHAR(50),
+   ALTER COLUMN "role" TYPE VARCHAR(50),
+   ADD CONSTRAINT "User_name_length_check" CHECK (LENGTH("name") <= 50 ),
+   ADD CONSTRAINT "User_role_length_check" CHECK (LENGTH("role") <= 50 ),
+   ADD CONSTRAINT "User_email_key" UNIQUE ("email")
+;
+
+ALTER TABLE IF EXISTS "Project"
+   ADD CONSTRAINT "End_after_start_check" CHECK ("end" > "start" )
+;
+
+ALTER TABLE IF EXISTS "User-Project"
+   ADD CONSTRAINT "User-Project_unique" UNIQUE("user_id", "project_id")
+;
+
+ALTER TABLE IF EXISTS "Daily-Log"
+   ADD CONSTRAINT "UserProject-date_unique" UNIQUE("project-member_id", "date")
+;
+#+END_SRC
+
+
+** Modificar tablas desde Ruby
+  :PROPERTIES:
+  :ARTICLE:  smaller
+  :END:
+
+#+BEGIN_SRC Ruby
+require 'pg'
+
+conn = PG.connect(dbname: 'reforzamiento-sql', host: "localhost",
+  user: "amiguito", password: "123456789")
+
+
+begin
+  conn.exec('
+    <b>ALTER TABLE IF EXISTS "User"
+      ALTER COLUMN "name" TYPE VARCHAR(50),
+      ALTER COLUMN "role" TYPE VARCHAR(50),
+      ADD CONSTRAINT "User_name_length_check" CHECK (LENGTH("name") <= 50 ),
+      ADD CONSTRAINT "User_role_length_check" CHECK (LENGTH("role") <= 50 ),
+      ADD CONSTRAINT "User_email_key" UNIQUE ("email")
+    ;</b>
+  ')
+rescue StandardError => e
+  puts e.message
+end
+#+END_SRC
+
+** Modificar tablas desde Ruby (continue code)
+  :PROPERTIES:
+  :ARTICLE:  smaller
+  :END:
+
+#+BEGIN_SRC Ruby
+begin
+  conn.exec('
+    <b>ALTER TABLE IF EXISTS "Project"
+      ADD CONSTRAINT "End_after_start_check" CHECK ("end" > "start" )
+    ;</b>
+  ')
+rescue StandardError => e
+  puts e.message
+end
+
+begin
+  conn.exec('
+    <b>ALTER TABLE IF EXISTS "User-Project"
+      ADD CONSTRAINT "User-Project_unique" UNIQUE("user_id", "project_id")
+    ;</b>
+  ')
+rescue StandardError => e
+  puts e.message
+end
+#+END_SRC
+
+** Modificar tablas desde Ruby (continue code)
+
+#+BEGIN_SRC Ruby
+begin
+  conn.exec('
+    <b>ALTER TABLE IF EXISTS "Daily-Log"
+      ADD CONSTRAINT "UserProject-date_unique" UNIQUE("project-member_id", "date")
+    ;</b>
+  ')
+rescue StandardError => e
+  puts e.message
+end
+
+#+END_SRC
+
 * Gracias ˊ・ω・ˋ
 :PROPERTIES:
 :SLIDE: thank-you-slide segue
@@ -365,3 +487,4 @@ conn.exec('
 * Footnotes
 [fn:1] [[https://www.postgresql.org/docs/12/datatype.html][Doc - PostgreSQL Datatypes]]
 [fn:2] [[https://www.postgresql.org/docs/12/ddl-constraints.html][Doc - PostgreSQL Constraints]]
+[fn:3] [[https://www.postgresql.org/docs/12/sql-altertable.html][Doc - PostgreSQL Alter Table]]
