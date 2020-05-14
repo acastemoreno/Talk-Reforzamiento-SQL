@@ -53,7 +53,7 @@ Setear
   :END:
 Usando al usuario anteriormente creado
 
-** Login con el usuario y crear base de datos
+** Crear base de datos con SQL sentence
 #+BEGIN_SRC shell
 $ psql -h localhost -d postgres -U amiguito -W 
 # Se creara un prompt para escribir la contraseña del usuario
@@ -63,6 +63,90 @@ Password:
 .
 postgres=> CREATE DATABASE "reforfamiento-sql";
 CREATE DATABASE
+#+END_SRC
+
+** Crear base de datos desde Ruby
+#+BEGIN_SRC ruby
+require 'pg'
+
+conn = PG.connect(dbname: <b>'postgres'</b>, host: <b>"localhost"</b>, 
+  user: <b>"amiguito"</b>, password: <b>"123456789"</b>)
+conn.exec('<b>CREATE DATABASE "reforfamiento-sql"</b>')
+#+END_SRC
+
+* Crear tabla
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+** Crear tabla con SQL sentence
+  :PROPERTIES:
+  :ARTICLE:  smaller
+  :END:
+#+BEGIN_SRC SQL
+CREATE TABLE IF NOT EXISTS timetracker();
+
+CREATE TABLE IF NOT EXISTS "User"(
+   "id" SERIAL PRIMARY KEY,
+   "name" VARCHAR(25) NOT NULL,
+   "email" VARCHAR(25) NOT NULL,
+   "role" VARCHAR(20) NOT NULL,
+   "rate" INTEGER CHECK (rate >= 0)
+);
+
+CREATE TABLE IF NOT EXISTS "Project"(
+   "id" SERIAL PRIMARY KEY ,
+   "name" VARCHAR(25) NOT NULL,
+   "category" VARCHAR(25) NOT NULL,
+   "start" DATE NOT NULL,
+   "end" DATE NOT NULL,
+   "closed" BOOLEAN NOT NULL DEFAULT false
+);
+
+#+END_SRC
+
+** Crear tabla desde Ruby
+  :PROPERTIES:
+  :ARTICLE:  smaller
+  :END:
+#+BEGIN_SRC ruby
+require 'pg'
+
+conn = PG.connect(dbname: 'reforfamiento-sql', host: "localhost",
+  user: "amiguito", password: "123456789")
+
+conn.exec('
+  <b>CREATE TABLE <b>IF NOT EXISTS</b> timetracker();</b>
+')
+
+conn.exec('
+  <b>CREATE TABLE <b>IF NOT EXISTS</b> "User"(
+    "id" SERIAL PRIMARY KEY,
+    "name" VARCHAR(25) NOT NULL,
+    "email" VARCHAR(25) NOT NULL,
+    "role" VARCHAR(20) NOT NULL,
+    "rate" INTEGER CHECK (rate >= 0)
+  );</b>
+')
+#+END_SRC
+
+** Crear tabla desde Ruby (continue code)
+  :PROPERTIES:
+  :ARTICLE:  smaller
+  :END:
+#+BEGIN_SRC ruby
+conn.exec('
+  <b>CREATE TABLE IF NOT EXISTS "Project"(
+    "id" SERIAL PRIMARY KEY ,
+    "name" VARCHAR(25) NOT NULL,
+    "category" VARCHAR(25) NOT NULL,
+    "start" DATE NOT NULL,
+    "end" DATE NOT NULL,
+    "closed" BOOLEAN NOT NULL DEFAULT false
+  );</b>
+')
 #+END_SRC
 
 * Gracias ˊ・ω・ˋ
