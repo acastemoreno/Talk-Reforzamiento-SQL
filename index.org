@@ -658,6 +658,7 @@ FROM mytable</b>
   :ASIDE:    right bottom
   :ARTICLE:  flexbox vleft auto-fadein
   :END:
+[[https://github.com/acastemoreno/Talk-Reforzamiento-SQL/tree/master/demos][Demo]]
 
 * Gracias ˊ・ω・ˋ
 :PROPERTIES:
