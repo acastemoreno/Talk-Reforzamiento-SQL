@@ -651,6 +651,16 @@ FROM mytable</b>
 
   Limita la cantidad o offset de los rows devueltos.
 
+** 3. ON mytable.column = another_table.column
+#+BEGIN_CENTER
+#+ATTR_HTML: :height 400px
+[[file:images/ON SQL.jpg]]
+#+END_CENTER
+
+#+ATTR_HTML: :class note
+#+BEGIN_QUOTE
+solo para nota[fn:6]
+#+END_QUOTE
 
 * DEMO TIME
   :PROPERTIES:
